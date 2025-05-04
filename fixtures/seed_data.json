@@ -1,0 +1,38 @@
+[
+  {
+    "model": "tasks.task",
+    "fields": {
+      "user": 2,
+      "title": "Set up Task model",
+      "comment": "Define the Task moodel with fields required for the application.",
+      "is_completed": false,
+      "due_date": "2025-05-06",
+      "created_at": "2025-05-04",
+      "updated_at": "2025-05-04"
+    }
+  },
+  {
+    "model": "tasks.task",
+    "fields": {
+      "user": 2,
+      "title": "Allow user to create tasks",
+      "comment": "Implement the ability for users to create tasks.",
+      "is_completed": false,
+      "due_date": "2025-05-06",
+      "created_at": "2025-05-04",
+      "updated_at": "2025-05-04"
+    }
+  },
+  {
+    "model": "tasks.task",
+    "fields": {
+      "user": 2,
+      "title": "Give user ability to edit tasks",
+      "comment": "User is able to edit their tasks.",
+      "is_completed": false,
+      "due_date": "2025-05-06",
+      "created_at": "2025-05-04",
+      "updated_at": "2025-05-04"
+    }
+  }
+]

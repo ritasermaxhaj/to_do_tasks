@@ -6,7 +6,7 @@ from tasks.models import Task
 class TaskAdmin(admin.ModelAdmin):
     list_display = ('title', 'user', 'due_date', 'is_completed', 'created_at', 'updated_at')
     search_fields = ('title', 'comment')
-    list_filter = ('is_completed')
+    list_filter = ('is_completed', 'due_date')
     ordering = ('-created_at',)
 
     class Meta:
