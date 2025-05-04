@@ -1,0 +1,44 @@
+{% extends 'tasks/base.html' %}
+{% block title %}{{ action }}{% endblock %}
+
+{% block content %}
+<div class="form-container">
+  <h2 class="text-center mb-4">{{ action }}</h2>
+  <form method="post" novalidate>
+    {% csrf_token %}
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="id_title" class="form-label">Title</label>
+        {{ form.title }}
+        {% for error in form.title.errors %}
+          <div class="text-danger small">{{ error }}</div>
+        {% endfor %}
+      </div>
+
+      <div class="col-md-6">
+        <label for="id_due_date" class="form-label">Due Date</label>
+        {{ form.due_date }}
+        {% for error in form.due_date.errors %}
+          <div class="text-danger small">{{ error }}</div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="id_comment" class="form-label">Comment</label>
+      {{ form.comment }}
+      {% for error in form.comment.errors %}
+        <div class="text-danger small">{{ error }}</div>
+      {% endfor %}
+    </div>
+
+    <div class="form-check mb-3">
+      {{ form.is_completed }}
+      <label for="id_is_completed" class="form-check-label">Mark as Completed</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">{{ action }}</button>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends 'tasks/base.html' %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <h2 class="mb-4 text-center">Your Tasks</h2>
+<div class="text-end mb-3">
+  <a href="{% url 'dashboard' %}" class="btn btn-outline-secondary">
+    Dashboard
+  </a>
+</div>
+
+  <div class="mb-5">
+    <h4 class="mb-3">Pending Tasks</h4>
+    {% if pending_tasks %}
+      <div class="row g-3">
+        {% for task in pending_tasks %}
+        <div class="col-md-6">
+          <div class="card border-start border-warning shadow-sm">
+            <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+                <h5 class="card-title">{{ task.title }}</h5>
+                <form method="post" action="{% url 'toggle_task_completion' task.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-sm btn-success" title="Mark as Completed">
+                        <i class="bi bi-check-circle-fill"></i>
+                    </button>
+                </form>
+                </div>
+              {% if task.due_date %}
+                <p class="card-subtitle mb-1 text-muted">Due: {{ task.due_date }}</p>
+              {% endif %}
+              {% if task.comment %}
+                <p class="card-text">{{ task.comment }}</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="text-muted">No pending tasks.</p>
+    {% endif %}
+  </div>
+
+  <div>
+    <h4 class="mb-3">Completed Tasks</h4>
+    {% if completed_tasks %}
+      <div class="row g-3">
+        {% for task in completed_tasks %}
+        <div class="col-md-6">
+          <div class="card border-start border-success shadow-sm bg-light">
+            <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+              <h5 class="card-title text-decoration-line-through">{{ task.title }}</h5>
+              <form method="post" action="{% url 'toggle_task_completion' task.id %}" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-sm btn-warning" title="Mark as Pending">
+                    <i class="bi bi-arrow-counterclockwise"></i>
+                </button>
+            </form>
+            </div>
+              {% if task.is_completed %}
+                <span class="badge bg-success">Completed</span>
+              {% endif %}
+              {% if task.due_date %}
+                <p class="card-subtitle mb-1 text-muted">Due: {{ task.due_date }}</p>
+              {% endif %}
+              {% if task.comment %}
+                <p class="card-text text-muted">{{ task.comment }}</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="text-muted">No completed tasks.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
