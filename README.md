@@ -51,6 +51,7 @@ python manage.py runserver
 ## Load Sample Data (Optional)
 
 To load initial sample data:
+Make sure also to manually change the user ID in the JSON file or create a user with that specific user ID
 
 ```bash
 python manage.py loaddata fixtures/seed_data.json
